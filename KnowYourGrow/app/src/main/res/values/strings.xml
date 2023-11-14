@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KnowYourGrow</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Add</string>
+    <string name="title_notifications">Plants</string>
+    <string name="title_settings">Settings</string>
+</resources>
