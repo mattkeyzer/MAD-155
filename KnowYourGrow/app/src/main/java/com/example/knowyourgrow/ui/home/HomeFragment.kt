@@ -1,7 +1,5 @@
 package com.example.knowyourgrow.ui.home
 
-import android.app.Application
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.example.knowyourgrow.Adapter
+import com.example.knowyourgrow.Constants
 import com.example.knowyourgrow.R
-import com.example.knowyourgrow.adapter.rvItemAdapter
 import com.example.knowyourgrow.databinding.FragmentHomeBinding
-import com.example.knowyourgrow.models.rvItemModel
-var plants: ArrayList<rvItemModel> = ArrayList()
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -29,40 +27,36 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-      //  val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        val homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-       // val plantRV: RecyclerView = binding.plantRV
-        setupData()
-        val adpater = rvItemAdapter(plants)
-        binding.plantRV.adapter = adpater
-     //   homeViewModel.text.observe(viewLifecycleOwner) {
-
-    //    }
+        //val textView: TextView = binding.textHome
+        //homeViewModel.text.observe(viewLifecycleOwner) {
+          //  textView.text = it
+        //}
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // getting the employeelist
+        val employelist= Constants.getEmployeeData()
+        // Assign employeelist to ItemAdapter
+        val itemAdapter= Adapter(employelist)
+        // Set the LayoutManager that
+        // this RecyclerView will use.
+        val recyclerView: RecyclerView =view.findViewById(R.id.recycleView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        // adapter instance is set to the
+        // recyclerview to inflate the items.
+        recyclerView.adapter = itemAdapter
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-    private fun setupData(): ArrayList<rvItemModel>{
-
-
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-        plants.add(rvItemModel(R.drawable.plant, "Plant Name", "Description"))
-
-        return plants
     }
 }
