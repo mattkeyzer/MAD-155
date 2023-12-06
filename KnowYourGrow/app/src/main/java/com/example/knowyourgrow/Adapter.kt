@@ -6,32 +6,39 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class Adapter(private val emplist: ArrayList<Employee>) : RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter(private var plantlist: ArrayList<PlantModel>) : RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
-    // This method creates a new ViewHolder object for each item in the RecyclerView
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        // Inflate the layout for each item and return a new ViewHolder object
+
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.items_list, parent, false)
         return MyViewHolder(itemView)
     }
 
-    // This method returns the total
-    // number of items in the data set
+
     override fun getItemCount(): Int {
-        return emplist.size
+        return plantlist.size
     }
 
-    // This method binds the data to the ViewHolder object
-    // for each item in the RecyclerView
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentEmp = emplist[position]
-        holder.name.text = currentEmp.name
-        holder.email.text = currentEmp.email
+        val currentPlant = plantlist[position]
+        holder.plantName.text = currentPlant.plantName
+        holder.waterFrequency.text = currentPlant.waterFrequency.toString()
+        holder.sunlight.text = currentPlant.sunlight
     }
 
-    // This class defines the ViewHolder object for each item in the RecyclerView
+    fun updateData(newPlantList: List<PlantModel>) {
+        plantlist = newPlantList as ArrayList<PlantModel>
+        notifyDataSetChanged()
+    }
+
+
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name: TextView = itemView.findViewById(R.id.tvName)
-        val email: TextView = itemView.findViewById(R.id.tvEmail)
+        val plantName: TextView = itemView.findViewById(R.id.plantName)
+        val waterFrequency: TextView = itemView.findViewById(R.id.waterFrequency)
+        val sunlight: TextView = itemView.findViewById(R.id.sunlight)
+
+
     }
 }

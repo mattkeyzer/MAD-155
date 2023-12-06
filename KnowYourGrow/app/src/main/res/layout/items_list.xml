@@ -32,7 +32,7 @@
 
             <!--TextView for displaying Name -->
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/plantName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
@@ -41,13 +41,23 @@
 
             <!--TextView for displaying Email -->
             <TextView
-                android:id="@+id/tvEmail"
+                android:id="@+id/waterFrequency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#454545"
                 android:textSize="16sp"
-                tools:text="Email" />
+                tools:text="Water" />
+
+            <!--TextView for displaying Email -->
+            <TextView
+                android:id="@+id/sunlight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#454545"
+                android:textSize="16sp"
+                tools:text="Sunlight" />
 
         </LinearLayout>
 
